@@ -1,0 +1,28 @@
+/*# sourceURL=c-v-header.component.scss */
+
+:host {
+  display: block;
+  padding: 0 1em 0 1em;
+  background-color: #7fffd421;
+  
+  .c-v-h-left {
+    display: flex;
+    align-items: center;
+  }
+  .c-v-h-logo-client {
+    background-image: url("/assets/app-client/img/logo-client.png");
+    background-repeat: no-repeat;
+    background-position: center center;  
+    background-size: cover;
+    width: 4.45em;
+    height: 4.45em;
+
+    &:hover {
+      background-image: url("/assets/app-client/img/logo-client_hov.png");
+    }
+  }
+  .c-v-h-label {
+    margin-left: 1em;  
+    margin-right: 1em;  
+  }
+}

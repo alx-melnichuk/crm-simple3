@@ -1,0 +1,24 @@
+/*# sourceURL=c-l-middle.component.scss */
+
+:host {
+  display: block;
+  padding: 0.3em 0.3em;
+
+  .c-l-m-wrap {
+    height: 39em;
+    overflow: auto;
+  }
+  .c-l-m-table {
+    font-size: 0.92857em;
+  }
+  table {
+    width: 100%;
+    font-size: inherit;
+  }
+  .mat-header-cell, .mat-cell, .mat-footer-cell {
+    font-size: inherit;
+  }
+  tr.mat-row {
+    cursor: pointer;
+  }
+}

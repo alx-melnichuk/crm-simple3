@@ -1,0 +1,9 @@
+<ng-container *ngIf="navList != null">
+  <nav>
+    <ul>
+      <li *ngFor="let nav of navList" [routerLink]="[nav.routerLink]" [routerLinkActive]="['active']">
+        {{ nav.name }}
+      </li>
+    </ul>
+  </nav>
+</ng-container>

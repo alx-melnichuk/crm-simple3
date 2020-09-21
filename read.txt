@@ -1,0 +1,276 @@
+
+
+
+
+2020.09.21
+https://webformyself.com/problemy-zashhity-routa-v-angular/
+Но что если у нас не активировано исходное состояние? А такое возможно? Да. Это можно сделать,
+открыв в браузере новую вкладку и перейдя по адресу http://localhost:4200/cars/ford.
+Angular роутер пытается активировать состояние /cars/ford, и у него не получается.
+К сожалению, так как у нас нет исходного активного состояния, будет показана пустая страница.
+По крайней мере, корневой элемент полностью пустой. Не знаю, должно ли быть так, но эта
+проблема возникает также для canActivate.
+
+Как обойти эту проблему? Просто следя за исходным URL после отмены активации роута.
+Давайте применим подписку к событию NavigationCancel:
+
+this.router.events
+    .filter(event => event instanceof NavigationCancel)
+    .subscribe(event => {
+         const { url } = this.router.currentRouterState.snapshot;
+         if (url === '') {
+             this.router.navigate(['/cars']);
+         }
+    });
+
+
+
+401
+требуется авторизация
+403 Forbidden:
+ошибка сервера
+= = = =
+Я столкнулся с той же проблемой. Более простой способ - использовать location.reload ()
+
+Функция в вашем App.component, которая вызывается, когда пользователь нажимает кнопку выхода, должна выглядеть следующим образом.
+
+```
+logout() {
+  //Auth Logout service call
+  this.auth.logout();
+  //Router Navigation to Login Page
+  this.router.navigate(['login']);
+  //Reload Angular to refresh components and prevent old data from loading up for a
+  //another user after login. This especially applies lazy loading cases.
+  location.reload();
+}
+```
+
+https://stackoverflow.com/questions/53413612/ngx-translate-with-shared-lazy-loading-modules
+Ngx translate с модулями с общей / ленивой загрузкой
+
+
+
+
+How to apply canActivate guard on all the routes?
+
+Вы также можете подписаться на изменения маршрута маршрутизатора в функции ngOnInit
+вашего app.component и проверить аутентификацию оттуда, например
+
+    this.router.events.subscribe(event => {
+        if (event instanceof NavigationStart && !this.token.isLoggedIn()) {
+            this.router.navigate(['/login'],{ queryParams: { returnUrl: state.url}});
+        }
+    });
+
+Вы можете попробовать навигации по текущему адресу: router.navigateByUrl(router.url, { replaceUrl: true });.
+Или создайте специальный маршрутизатор, например, /cancel-navigationс CanActivateохраной, и перейдите к нему, если хотите отменить навигацию.
+
+Не будет завершено, если CanActivateзащита для отмены-навигации всегда будет возвращать false.
+Вся логика относительно того, отменять навигацию или нет, будет в обработчике событий.
+Вы бы только перенаправили навигацию /cancel-navigationна отмену.
+
+
+Смена маршрута даже срабатывает, только когда меняется маршрут.
+Он не срабатывает при первом запуске приложения.
+
+
+И используйте, Location.path()чтобы получить текущий URL.
+  constructor(private Location:Location) {
+    console.log(this.Location.path())
+  }
+
+
+NavigationStart
+Событие срабатывает , когда начинается навигация.
+RoutesRecognized
+Событие срабатывает , когда маршрутизатор анализирует URL и маршруты распознаются.
+RouteConfigLoadStart
+Событие срабатывает перед Router ленивой нагрузкой конфигурации маршрута.
+RouteConfigLoadEnd
+Событие срабатывает после того, как маршрут был ленивым загружен.
+NavigationEnd
+Событие срабатывает , когда навигация завершается успешно.
+NavigationCancel
+Событие срабатывает , когда навигация будет отменена. Это связано с тем, что Route Guard возвращает false во время навигации.
+NavigationError
+Событие срабатывает при навигации выходит из строя из -за непредвиденной ошибки.
+
+
+  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    if (!this.authService.isLoggedIn) {
+      // redirect to some view explaining what happened
+!      this.router.navigateByUrl('/notauthorized');
+!      return false;
+    } else {
+      return true;
+    }
+  }
+
+Самый простой способ создать такой UrlTree- использовать функции parseUrl(…)или объекта.createUrlTree(…)Router
+
+router.parseUrl('/notauth');
+this.router.createUrlTree(['/notauth']);
+Зная это, мы можем изменить нашу исходную реализацию защиты на следующую:
+
+  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    if (!this.authService.isLoggedIn) {
+      return this.router.parseUrl('/notauthorized');
+    } else {
+      return true;
+    }
+  }
+
+Отмена навигации Еще одним преимуществом является возможность отмены всех других событий навигации.
+Всякий раз, когда UrlTreeот охранника маршрута возвращается a, Angular запускает NavigationCancel
+событие, таким образом эффективно отменяя все запущенные события навигации и запуская новую
+навигацию по указанному URL-адресу.
+
+в Angular v7.1, позволяет нам перенаправлять на новое представление, просто возвращая
+UrlTreeобъект. Это небольшое изменение позволяет выполнить две основные оптимизации,
+которые может сделать Angular: приоритизация и отмена навигации.
+
+
+
+
+ 1992  cd /home/alexey/ws_ts3/crm-simple2/
+ 1993  npx ng generate service profile --project=lib-core
+ 1994  npx ng generate application app-authorize --routing=true --style=scss
+
+
+
+Права пользователя.
+В каждом дополнительном приложении имеются свои маршруты. И каждый такой маршрут доступен,
+если у пользователя имеется соответствующе разрешение. Обычно разработчик желает оперировать
+перечислением, в котором собраны все разрешение пользователя.
+Например, таким вот:
+export enum AllPermission {
+  clientList = 'clientList',
+  clientView = 'clientView',
+  taskList = 'taskList',
+  taskView = 'taskView'
+}
+Соотвтственно это перечисление будет находится к библиотеке ядра.
+И каждое дополнительное приложение импортирует себе это перечисление.
+Предположим, что в одном дополнительном приложении появился новый: функционал,
+маршрут и соотетственно новое разрешение. Это новое разрешение нашим разработчиом
+добавляется в единый тип пречисления (AllPermission). И так как изменилась общая
+библиотека ядра, то требуется перекомпилировать все дополнительные приложения.
+После этого передать обновления дополнительных приложений все клиентам, которые их исользуют.
+Если этого не сделать, то возникнет ситуация когда у клиентов будут разные версии ядра.
+А это то же может привести плохим последствиям.
+
+Было бы намного лучше, если можно было избежать таких проблем.
+Давайте посмотрим с другой стороны. Попробуем применить принцип децентрализации.
+Каждое дополнительное приложение хранит в себе все свои разрешения.
+И если меняется список разрешений, то это повлияет только на данное дополнительное приложение.
+
+Вывод:
+Максимально применяйте принцип децентрализации дополнительных приложений.
+
+
+
+ Выводы:
+- в общей для всех доп.модулей библиотеке ядра создаем сущности, которые уже не планируется
+  менять в дальнейшем;
+  Это могут быть:
+  - общие константы;
+  - общие декораторы (например: авто-отписка от подписки "auto-unsubscribe");
+  - общие типы и классы (например: класс профиля пользователя с правами доступа);
+  - общие сервисы (например: сервис для хранения профиля пользователя);
+
+- как можно больше используйте подход децентрализации;
+  То есть дополнительные модули не должны зависить от сущностей, которые могут менятся.
+
+
+
+  Создать каталог для проекта  перейти в него:
+```bash
+$ mkdir /home/alexey/ws_ts3/crm-simple2/ && cd /home/alexey/ws_ts3/crm-simple2/
+```
+
+
+
+
+
+В случае, когда пользователя нет никаких прав, то ему отобразаится страница с сообщением:
+"у вас отсутствуют права достпа, обратитесь  администратору".
+
+
+$ npx ng g s services/http-client-villain
+
+
+https://www.itsolutionstuff.com/post/angular-multi-step-reactive-form-exampleexample.html
+Пример многошаговой реактивной формы Angular
+
+
+
+https://stackoverflow.com/questions/44952811/exclude-files-from-build-in-angular-2
+Исключить файлы из сборки в Angular 2
+
+Предположим, я добавил файл ./src/app/components/my-component/my-component.stub.tsдля помощи в модульных тестах.
+Чтобы исключить указанный выше файл, добавьте следующее регулярное выражение src/tsconfig.app.json:
+"exclude": [
+    "**/*.stub.ts"
+]
+
+В angular.json (расположенном в корневом каталоге проекта Angular) вы увидите этот блок
+замены файла в конфигурациях сборки для производственной среды по умолчанию.
+Просто добавьте туда свои собственные замены файлов, и ничего из замененного файла не будет
+скомпилировано в приложение.
+"fileReplacements": [
+  {
+    "replace": "src/environments/environment.ts",
+    "with": "src/environments/environment.prod.ts"
+  },
+  {
+    "replace": "src/yourconfig.ts",
+    "with": "src/yourconfig.prod.ts"
+  }
+],
+
+
+
+2020.09.17
+
+Error: BrowserModule has already been loaded. If you need access to common directives such as NgIf and NgFor from a lazy loaded module, import CommonModule instead.
+
+
+Error: Uncaught (in promise):
+Error: RouterModule.forRoot() called twice.
+Lazy loaded modules should use RouterModule.forChild() instead.
+
+
+
+
+
+
+
+<a href="/n/Secondary-and-Adult-Courses"
+  class="MMcat secondary-and-adult currentPage9" data-cattype="6">
+                                <span>
+                                    <!--?xml version="1.0" encoding="UTF-8"?--><svg enable-background="new 0 0 100 100" version="1.1" viewBox="0 0 100 100" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><g><g><g fill="#004F9E"><path class="innerCircle" d="m50.002 98c-26.468 0-48.002-21.534-48.002-48.001s21.534-47.999 48.002-47.999c26.466 0 47.998 21.532 47.998 47.999s-21.532 48.001-47.998 48.001z"></path><path class="circleBorder" d="m50.002 4c25.364 0 45.998 20.635 45.998 45.999 0 25.365-20.635 46-45.999 46-25.365 1e-3 -46.001-20.635-46.001-46 0-25.364 20.636-45.999 46.002-45.999m0-4c-27.571 0-50.002 22.43-50.002 49.999 0 27.571 22.431 50 50.002 50 27.569 0 49.999-22.43 49.999-50-1e-3 -27.569-22.43-49.999-49.999-49.999z"></path></g></g><path class="innerShape" d="m30.553 58.962h43.924c0.744 0 1.449-0.354 1.904-0.947 0.445-0.598 0.598-1.368 0.396-2.092l-6.648-26.585c-0.646-2.3-2.742-3.883-5.131-3.883h-27.54c-2.349 0-4.396 1.549-5.097 3.86-0.461 1.518-8.237 30.628-8.636 32.033-0.351 1.206-0.592 2.167-0.592 3.715 0 5.227 3.326 9.482 7.418 9.482h42.382c1.863 0 3.371-1.511 3.371-3.37h-45.751c-2.193 0-4.045-2.797-4.045-6.112 0-3.31 1.851-6.101 4.045-6.101zm10.817-26.609h20.531l2.236 8.783h-25.105l2.338-8.783z" fill="#fff"></path></g></svg>
+                                </span>
+                                <span>
+                                    Secondary &amp; Adult
+                                </span>
+                            </a>
+
+
+https://www.mmpublications.com/n/Secondary-and-Adult-Courses
+.MMcat:hover, .MMcat-list:hover, .MMcat-list.currentPage {
+    text-decoration: none;
+}
+a:hover, a:active, a:visited, a:focus {
+    text-decoration: none;
+}
+a:visited {
+    text-decoration: none;
+}
+a:focus, a:hover {
+    color: #23527c;
+    text-decoration: underline;
+}
+a:active, a:hover {
+    outline: 0;
+}

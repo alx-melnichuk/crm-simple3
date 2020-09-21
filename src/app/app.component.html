@@ -1,0 +1,13 @@
+<header *ngIf="hasProfile">
+  <div class="a-menu-list">
+    <img class="a-logotype" src="/assets/img/logotype.svg">
+    <div>{{ title }}</div>
+    <app-nav
+      [navList]="navList"
+    ></app-nav>
+  </div>
+  <div>
+    <div>User: {{ userName }}</div>
+  </div>
+</header>  
+<router-outlet></router-outlet>

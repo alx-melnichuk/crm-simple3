@@ -1,0 +1,75 @@
+<div class="c-l-m-wrap mat-elevation-z8">
+  <div class="c-l-m-table" *ngIf="clientList != null">
+    <table mat-table [dataSource]="clientList">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element"> {{ element.id }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="surname">
+        <th mat-header-cell *matHeaderCellDef> Surname </th>
+        <td mat-cell *matCellDef="let element"> {{ element.surname }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="patronymic">
+        <th mat-header-cell *matHeaderCellDef> Patronymic </th>
+        <td mat-cell *matCellDef="let element"> {{ element.patronymic }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let element"> {{ element.email }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="phone">
+        <th mat-header-cell *matHeaderCellDef> Phone </th>
+        <td mat-cell *matCellDef="let element"> {{ element.phone }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="source">
+        <th mat-header-cell *matHeaderCellDef> Source </th>
+        <td mat-cell *matCellDef="let element"> {{ element.source }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="city">
+        <th mat-header-cell *matHeaderCellDef> City </th>
+        <td mat-cell *matCellDef="let element"> {{ element.city }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="webSite">
+        <th mat-header-cell *matHeaderCellDef> Web Site </th>
+        <td mat-cell *matCellDef="let element"> {{ element.webSite }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="hasContract">
+        <th mat-header-cell *matHeaderCellDef> Has Contract </th>
+        <td mat-cell *matCellDef="let element"> {{ element.hasContract }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="howFound">
+        <th mat-header-cell *matHeaderCellDef> How Found </th>
+        <td mat-cell *matCellDef="let element"> {{ element.howFound }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="isRealClient">
+        <th mat-header-cell *matHeaderCellDef> Is Real Client </th>
+        <td mat-cell *matCellDef="let element"> {{ element.isRealClient }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="payment">
+        <th mat-header-cell *matHeaderCellDef> Payment </th>
+        <td mat-cell *matCellDef="let element"> {{ element.payment }} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="clickRow(row)"></tr>
+    </table>
+
+  </div>
+</div>

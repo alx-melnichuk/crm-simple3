@@ -1,0 +1,30 @@
+/*# sourceURL=t-v-header.component.scss */
+
+:host {
+  display: block;
+  padding: 0 1em 0 1em;
+  background-color: #7fffd421;
+
+  .t-v-h-left {
+    display: flex;
+    align-items: center;
+  }
+  .t-v-h-logo-task {
+    background-image: url("/assets/app-task/img/logo-task.png");
+    background-repeat: no-repeat;
+    background-position: center center;  
+    background-size: cover;
+
+    width: 4.45em;
+    height: 4.45em;
+
+    &:hover {
+      background-image: url("/assets/app-task/img/logo-task_hov.png");
+    }
+  }
+  .t-v-h-label {
+    margin-left: 1em;  
+    margin-right: 1em;  
+  }
+}
+      

@@ -1,0 +1,34 @@
+/*# sourceURL=t-v-middle.component.scss */
+
+:host {
+  display: block;
+  padding: 0.3em 0.3em;
+      
+  .t-v-m-wrap {
+    height: 39em;
+  }
+  .t-v-m-block {
+    height: calc(100% - 4em);
+    padding: 2em 3em;
+  }
+  .t-v-m-box {
+    width: 61em;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 100%;
+  }
+  .t-v-m-row {
+    width: 28em;
+    display: flex;
+    padding: 0.7em 0;
+    border-bottom: 1px solid #9e9e9e73;
+    margin-left: 1em;
+    margin-right: 1em;
+  }
+  .t-v-m-label {
+    flex: 0 0 40%;
+  }
+}
