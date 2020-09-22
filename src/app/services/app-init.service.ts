@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { ProfileService, ProfileDto, AutoUnsubscribe } from '../../../projects/lib-core/src/public-api';
+import { Tracing } from '../app.consts';
 
 @Injectable({
   providedIn: 'root'
@@ -16,14 +17,14 @@ export class AppInitService {
     private router: Router,
     private profileService: ProfileService
   ) {
-    console.log('main: AppInitService();');
+    Tracing.log('AppInitService();');
   }
 
   // ** Public API **
 
   public initProfile(): Promise<void> {
     return new Promise<void>((resolve, reject) => {
-      const profileId = 1;
+      const profileId = -1;
       if (profileId == null) {
         this.router.navigate(['/app-task/list']); // TODO Implement the transition to the authorization route.
         resolve();

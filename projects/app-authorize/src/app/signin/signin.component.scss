@@ -1,17 +1,9 @@
-/*# sourceURL=login.component.scss */
-$color1: #f0f9ff;
-$color2: #cbebff;
-$color3: #a1dbff;
+/*# sourceURL=signin.component.scss */
 
 :host {
   display: block;
   height: 100%;
   font-size: 12px;
-  background: $color1; /* Old browsers */
-  background: -moz-linear-gradient(top,  $color1 0%, $color2 47%, $color3 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top,  $color1 0%,$color2 47%,$color3 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom,  $color1 0%,$color2 47%,$color3 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=$color1, endColorstr=$color3,GradientType=0 ); /* IE6-9 */
 
   .a-l-wrapp {
     height: 100%;
@@ -56,7 +48,7 @@ $color3: #a1dbff;
     text-align: start;
     width: 280px;
   }
-  .a-l-item-mar {
+  .a-l-item {
     margin: 5px 0;
   }
   .a-l-input {

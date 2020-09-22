@@ -1,4 +1,10 @@
-import { RB_APP_TASK } from '../../../../projects/lib-core/src/lib/constants/core.constants';
+import { RB_APP_TASK } from '../../../../projects/lib-core/src/lib/lib-core.const';
+
+export class Tracing {
+  public static log(message?: any, ...optionalParams: any[]): void {
+    console.log('%capp-task: ' + message, 'color: Green; font-weight: bold', ...optionalParams);
+  }
+}
 
 /*
  * const RB_* - Route branch.

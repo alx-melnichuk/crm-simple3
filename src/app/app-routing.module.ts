@@ -3,10 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { PermissionsGuard } from '../../projects/lib-core/src/lib/guards/permissions.guard';
 import { LoadPermission } from './app.consts';
-import { RB_APP_AUTHORISE } from '../../projects/lib-core/src/lib/constants/core.constants';
-import { RB_APP_CLIENT } from '../../projects/lib-core/src/lib/constants/core.constants';
+import { RB_APP_AUTHORISE } from '../../projects/lib-core/src/lib/lib-core.const';
+import { RB_APP_CLIENT } from '../../projects/lib-core/src/lib/lib-core.const';
 import { RT_APP_CLIENT_LIST } from '../../projects/app-client/src/app/app.consts';
-import { RB_APP_TASK } from '../../projects/lib-core/src/lib/constants/core.constants';
+import { RB_APP_TASK } from '../../projects/lib-core/src/lib/lib-core.const';
 
 const routes: Routes = [
   {

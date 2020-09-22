@@ -1,4 +1,10 @@
 
+export class Tracing {
+  public static log(message?: any, ...optionalParams: any[]): void {
+    console.log('%clib-core: ' + message, 'color: Grey; font-weight: bold', ...optionalParams);
+  }
+}
+
 export const VERSION_APP = '0.3.0';
 export const DEMO_USER1_LOGIN = 'user1@crm-simple.ua';
 export const DEMO_USER1_PASSWD = '123456';

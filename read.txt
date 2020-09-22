@@ -1,6 +1,39 @@
 
 
 
+2020.09.22
+https://techrocks.ru/2019/05/14/debugger-for-chrome-in-vs-code/
+
+old
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Chrome against localhost",
+            "url": "http://localhost:4250",
+            "webRoot": "${workspaceFolder}"
+        }
+    ]
+}
+
+
+export class Tracing {
+  public static log(message?: any, ...optionalParams: any[]): void {
+    console.log('%cmain: ' + message, 'color: Grey; font-weight: bold; font-style: italic;', ...optionalParams);
+    console.log('%clib-core: ' + message, 'color: Grey; font-weight: bold', ...optionalParams);
+    console.log('%capp-task: ' + message, 'color: Green; font-weight: bold', ...optionalParams);
+    console.log('%capp-client: ' + message, 'color: DodgerBlue; font-weight: bold', ...optionalParams);
+    console.log('%capp-authorize: ' + message, 'color: MediumPurple; font-weight: bold', ...optionalParams);
+  }
+}
+
+
+
 
 2020.09.21
 https://webformyself.com/problemy-zashhity-routa-v-angular/

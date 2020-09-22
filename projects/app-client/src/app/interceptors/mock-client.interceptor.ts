@@ -3,6 +3,7 @@ import { HttpEvent, HttpRequest, HttpHandler, HttpInterceptor, HttpResponse } fr
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
+import { Tracing } from '../app.consts';
 import { API_CLIENT, QP_CLIENT_IDS } from '../../../../app-client/src/app/services/client-api.service';
 import { ClientDto } from '../../../../app-client/src/app/services/client.interface';
 
@@ -15,7 +16,7 @@ export class MockClientInterceptor implements HttpInterceptor {
   private clientProvider: ClientProvider = new ClientProvider();
 
   constructor() {
-    console.log('app-client: MockClientInterceptor();');
+    Tracing.log('MockClientInterceptor();');
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

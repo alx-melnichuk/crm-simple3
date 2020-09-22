@@ -1,4 +1,10 @@
-import { RB_APP_CLIENT } from '../../../../projects/lib-core/src/lib/constants/core.constants';
+import { RB_APP_CLIENT } from '../../../../projects/lib-core/src/lib/lib-core.const';
+
+export class Tracing {
+  public static log(message?: any, ...optionalParams: any[]): void {
+    console.log('%capp-client: ' + message, 'color: DodgerBlue; font-weight: bold', ...optionalParams);
+  }
+}
 
 /*
  * const RB_* - Route branch.

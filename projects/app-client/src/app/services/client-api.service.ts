@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+import { Tracing } from '../app.consts';
+
 import { ClientDto } from './client.interface';
 
 export const API_CLIENT = '/api/client';
@@ -14,7 +16,7 @@ export const QP_CLIENT_IDS = 'ids';
 export class ClientApiService {
 
   constructor(private http: HttpClient) {
-    console.log('app-client: ClientApiService();');
+    Tracing.log('ClientApiService();');
   }
 
   public getData(data: { ids: number[] }): Observable<ClientDto[]> {

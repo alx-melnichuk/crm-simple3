@@ -1,1 +1,40 @@
 /*# sourceURL=app.component.scss */
+
+:host {
+  height: 100%;
+
+  .a-wrap {
+    height: 100%;
+  }
+  .a-theme0 {
+    background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
+  }
+  .a-theme1 {
+    background-image: linear-gradient(-225deg, #7de2fc 0%, #b9b6e5 100%);
+  }
+  .a-theme2 {
+    background-image: linear-gradient(to top, #b3ffab 0%, #12fff7 100%);
+  }
+  .a-theme3 {
+    background-image: linear-gradient(to top, #007adf 0%, #00ecbc 100%);
+  }
+  .a-theme4 {
+    background-image: linear-gradient(to right, #92fe9d 0%, #00c9ff 100%);
+  }
+  .a-theme5 {
+    background-image: linear-gradient(-225deg, #b7f8db 0%, #50a7c2 100%);
+  }
+  .a-theme6 {
+    background-image: linear-gradient(-225deg, #5d9fff 0%, #b8dcff 48%, #6bbbff 100%);
+  }
+  .a-theme7 {
+    background-image: linear-gradient(-225deg, #20e2d7 0%, #f9fea5 100%);
+  }
+  .a-theme8 {
+    background-image: linear-gradient(to right, #74ebd5 0%, #9face6 100%);
+  }
+  .a-theme9 {
+    background-image: linear-gradient(to right, #43e97b 0%, #38f9d7 100%);
+  }
+
+}

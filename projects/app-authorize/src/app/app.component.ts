@@ -6,5 +6,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app-authorize';
+
+  public classTheme: string | null = this.getClassTheme();
+
+  constructor() { }
+
+  // ** Private API **
+
+  private getClassTheme(): string {
+    const day = (new Date()).getDate();
+    return 'a-theme' + (day % 10);
+  }
+
 }

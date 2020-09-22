@@ -10,6 +10,7 @@ import { TaskListModule } from './task-list/task-list.module';
 import { TaskViewModule } from './task-view/task-view.module';
 import { TaskApiService } from './services/task-api.service';
 import { MockTaskInterceptor } from './interceptors/mock-task.interceptor';
+import { Tracing } from './app.consts';
 
 const provideMock = [
   { provide: HTTP_INTERCEPTORS, useClass: MockTaskInterceptor, multi: true }
@@ -33,6 +34,6 @@ const provideMock = [
 })
 export class AppModule {
   constructor() {
-    console.log('app-task: AppModule();');
+    Tracing.log('AppModule();');
   }
 }

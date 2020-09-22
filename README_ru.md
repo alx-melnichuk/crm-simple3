@@ -395,10 +395,10 @@ $ npx ng generate application app-authorize --routing=true --style=scss
 
 Далее создаем компонент для авторизации при входе в программный комплекс.
 
-Создаем модуль и компонент _login_:
+Создаем модуль и компонент _signin_:
 ```bash
-$ npx ng generate module login --project=app-authorize
-$ npx ng generate component login --project=app-authorize --export=true
+$ npx ng generate module signin --project=app-authorize
+$ npx ng generate component signin --project=app-authorize --export=true
 ```
 В данном компоненте пользователь вводи свой логин и пароль, по которым и выполняется авторизация на сервере.
 

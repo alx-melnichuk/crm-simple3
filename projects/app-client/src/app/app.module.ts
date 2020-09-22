@@ -4,6 +4,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { environment } from '../environments/environment';
 
+import { Tracing } from './app.consts';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ClientListModule } from './client-list/client-list.module';
@@ -31,4 +32,8 @@ const provideMock = [
     ...(!environment.production ? provideMock : [])
   ]
 })
-export class AppModule { }
+export class AppModule {
+  constructor() {
+    Tracing.log('AppModule();');
+  }
+}

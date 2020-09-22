@@ -5,6 +5,7 @@ import { LibCoreComponent } from './lib-core.component';
 import { PermissionsGuard } from './guards/permissions.guard';
 import { ProfileApiService } from './services/profile-api.service';
 import { ProfileService } from './services/profile.service';
+import { Tracing } from './lib-core.const';
 
 
 @NgModule({
@@ -21,6 +22,6 @@ import { ProfileService } from './services/profile.service';
 })
 export class LibCoreModule {
   constructor() {
-    console.log('lib-core: LibCoreModule();');
+    Tracing.log('LibCoreModule();');
   }
 }

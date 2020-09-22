@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
+import { Tracing } from '../lib-core.const';
+
 import { ProfileDto } from './profile.interface';
 
 export const API_PROFILE = '/api/profile';
@@ -24,7 +26,7 @@ export class ProfileApiService {
   private profileList = (STACKBLITZ ? this.createList() : null);
 
   constructor(private http: HttpClient) {
-    console.log('lib-core: ProfileApiService();');
+    Tracing.log('ProfileApiService();');
   }
 
   public getData(data: { ids: number[] }): Observable<ProfileDto[]> {

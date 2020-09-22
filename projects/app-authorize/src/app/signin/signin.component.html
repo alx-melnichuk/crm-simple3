@@ -1,0 +1,48 @@
+<div class="a-l-wrapp">
+  <div class="a-l-container">
+    <section>
+      <div class="a-l-title">
+        <p>CRM - system</p>
+      </div>
+    </section>
+    <section>
+      <span>Sign in to go to CRM</span>
+    </section>
+    <section>
+      <div class="a-l-maket">
+        E-mail: {{ demoUserLogin }}<br>Password: {{ demoUserPassword }}
+      </div>
+    </section>
+
+    <section>
+      <div class="a-l-login">
+        <form [formGroup]="formGroup" novalidate>
+          <input type="hidden"
+            value="R1ZuME5wTFdJdFgwUkM0WX5namk1Z2ZReTB-SGp3enB9PTtG5yDgs2xvQcELDZid_TGrp3HWgZ3AlDlVYzmJpw=="
+            name="ShabiToken"
+          />
+          <label class="a-l-item">Login:</label>
+          <div class="a-l-item">
+            <input type="text" class="a-l-input" placeholder="Login" formControlName="login" />
+          </div>
+          <label class="a-l-item">Password:</label>
+          <div class="a-l-item">
+            <input type="password" class="a-l-input" placeholder="Password" formControlName="password" />
+          </div>
+          <div class="a-l-item">
+            <button class="a-l-button" (click)="clickSignIn()">Sign in</button>
+          </div>
+    
+        </form>
+      </div>
+    </section>
+    <section>
+      <span>Version: {{ version }}</span>
+    </section>
+
+    <div style="border: 1px dashed blueviolet; box-sizing: border-box;">
+      <div style="max-width: 300px;">{{ formGroup.value | json }}</div>
+    </div>
+    
+  </div>
+</div>

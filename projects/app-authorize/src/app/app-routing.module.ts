@@ -2,13 +2,17 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { RB_LOGIN } from './app.consts';
-import { LoginComponent } from './login/login.component';
+import { RB_SIGNIN } from './app.consts';
+import { SigninComponent } from './signin/signin.component';
 
 const itemRoutes: Routes = [
   {
-    path: RB_LOGIN,
-    component: LoginComponent
+    path: RB_SIGNIN,
+    component: SigninComponent
+  },
+  {
+    path: '**',
+    redirectTo: RB_SIGNIN
   }
 ];
 

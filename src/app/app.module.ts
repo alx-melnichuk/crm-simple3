@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { AppInitService } from './services/app-init.service';
+import { Tracing } from './app.consts';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,6 @@ import { AppInitService } from './services/app-init.service';
 })
 export class AppModule {
   constructor() {
-    console.log('main: AppModule();');
+    Tracing.log('AppModule();');
   }
 }

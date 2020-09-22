@@ -4,8 +4,9 @@ import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
 import { AuthorizeDto } from '../services/authorize.interface';
-import { DEMO_USER1_LOGIN, DEMO_USER1_PASSWD, DEMO_USER2_LOGIN, DEMO_USER2_PASSWD } from '../../../../lib-core/src/lib/constants/core.constants';
-import { API_AUTHORISE_LOGIN } from '../services/authorize-api.service';
+import { DEMO_USER1_LOGIN, DEMO_USER1_PASSWD, DEMO_USER2_LOGIN, DEMO_USER2_PASSWD } from '../../../../lib-core/src/lib/lib-core.const';
+import { API_AUTHORISE_SIGNIN } from '../services/authorize-api.service';
+import { Tracing } from '../app.consts';
 
 
 @Injectable({
@@ -16,20 +17,18 @@ export class MockAuthorizeInterceptor implements HttpInterceptor {
   private authorizeProvider: AuthorizeProvider = new AuthorizeProvider();
 
   constructor() {
-    console.log('app-authorize: MockAuthorizeInterceptor();');
+    Tracing.log('MockAuthorizeInterceptor();');
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (req.url !== API_AUTHORISE_LOGIN) {
+    if (req.url !== API_AUTHORISE_SIGNIN) {
       return next.handle(req);
     }
     let response = {};
     const delayTime = 100;
     switch (req.method) {
       case 'POST':
-        const login = '';
-        const password = '';
-        response = this.authorizeProvider.get({ login, password });
+        response = this.authorizeProvider.get({ login: req.body.login, password: req.body.password });
         break;
       default:
         break;
@@ -48,11 +47,13 @@ class AuthorizeProvider {
   // ** Public API **
 
   public get(data: { login: string, password: string }): AuthorizeDto[] {
-    const result: AuthorizeDto[] = this.authorizeList.slice();
-    if (!!data.login && !!data.password) {
-      const authorizeDto: AuthorizeDto = result.find(item => data.login === item.login && data.password === item.password);
+    const result: AuthorizeDto[] = [];
+    const list: AuthorizeDto[] = this.authorizeList.slice();
+    if (!!data.login) {
+      const authorizeDto: AuthorizeDto = list.find(item => data.login === item.login && data.password === item.password);
       if (authorizeDto != null) {
-        result.push(authorizeDto);
+        const authorizeData = Object.assign({}, authorizeDto, { password: null });
+        result.push(authorizeData);
       }
     }
     return result;

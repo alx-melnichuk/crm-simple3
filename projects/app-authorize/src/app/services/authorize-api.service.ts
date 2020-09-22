@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+import { Tracing } from '../../../../app-task/src/app/app.consts';
+
 import { AuthorizeDto } from './authorize.interface';
 
 
-export const API_AUTHORISE_LOGIN = '/api/authorize/login';
+export const API_AUTHORISE_SIGNIN = '/api/authorize/signin';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +15,10 @@ export const API_AUTHORISE_LOGIN = '/api/authorize/login';
 export class AuthorizeApiService {
 
   constructor(private http: HttpClient) {
-    console.log('app-authorize: AuthorizeApiService();');
+    Tracing.log('AuthorizeApiService();');
   }
 
-  public checkLogin(data: { login: string, password: string }): Observable<AuthorizeDto[]> {
-    return this.http.post<AuthorizeDto[]>(API_AUTHORISE_LOGIN, data);
+  public signin(data: { login: string, password: string }): Observable<AuthorizeDto[]> {
+    return this.http.post<AuthorizeDto[]>(API_AUTHORISE_SIGNIN, data);
   }
 }

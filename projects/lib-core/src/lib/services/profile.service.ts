@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { take, tap } from 'rxjs/operators';
 
+import { Tracing } from '../lib-core.const';
+
 import { ProfileApiService } from './profile-api.service';
 import { ProfileDto } from './profile.interface';
 
@@ -18,7 +20,7 @@ export class ProfileService {
   private innProfileDto: ProfileDto;
 
   constructor(private profileApiService: ProfileApiService) {
-    console.log('lib-core: ProfileService();');
+    Tracing.log('ProfileService();');
   }
 
   // ** Public API **

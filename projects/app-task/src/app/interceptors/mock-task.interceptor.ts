@@ -5,6 +5,7 @@ import { delay } from 'rxjs/operators';
 
 import { API_TASK, QP_TASK_IDS } from '../../../../app-task/src/app/services/task-api.service';
 import { TaskDto } from '../../../../app-task/src/app/services/task.interface';
+import { Tracing } from '../app.consts';
 
 
 @Injectable()
@@ -13,7 +14,7 @@ export class MockTaskInterceptor implements HttpInterceptor {
   private taskProvider: TaskProvider = new TaskProvider();
 
   constructor() {
-    console.log('app-task: MockTaskInterceptor();');
+    Tracing.log('MockTaskInterceptor();');
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
