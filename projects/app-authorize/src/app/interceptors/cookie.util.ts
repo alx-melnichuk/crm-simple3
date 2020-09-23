@@ -51,8 +51,6 @@ export class CookieOptions {
     this.maxAge = (maxAge >= 0 ? maxAge : this.maxAge);
   }
 }
-/** Defines the shape of an object in JSON format. */
-// export type JsonObject = Record<string, Json>;
 
 
 export class CookieUtil {
@@ -101,7 +99,7 @@ export class CookieUtil {
    * @param defaultValue The value to return if the cookie does not exist.
    * @return The cookie value, or the default value if the cookie is not found.
    */
-  public static get(key: string, defaultValue?: string): string|undefined {
+  public static get(key: string, defaultValue?: string): string | undefined {
     if (!CookieUtil.has(key)) {
       return defaultValue;
     }
@@ -110,7 +108,6 @@ export class CookieUtil {
       const scanner = new RegExp(String.raw`(?:(?:^|.*;)\s*${token}\s*=\s*([^;]*).*$)|^.*$`);
       return decodeURIComponent(document.cookie.replace(scanner, '$1'));
     }
-
     catch {
       return defaultValue;
     }
@@ -132,7 +129,17 @@ export class CookieUtil {
       return defaultValue;
     }
   }
-
+  /**
+   * Removes the cookie with the specified key and its associated value.
+   * @param key The cookie name.
+   * @param options The cookie options.
+   * @return The value associated with the specified key before it was removed.
+   */
+  public static remove(key: string, options?: CookieOptions): string | undefined {
+    const previousValue = CookieUtil.get(key);
+    CookieUtil._removeItem(key, options);
+    return previousValue;
+  }
   /**
    * Associates a given value to the specified key.
    * @param key The cookie name.

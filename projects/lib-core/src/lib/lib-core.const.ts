@@ -6,10 +6,14 @@ export class Tracing {
 }
 
 export const VERSION_APP = '0.3.0';
-export const DEMO_USER1_LOGIN = 'user1@crm-simple.ua';
-export const DEMO_USER1_PASSWD = '123456';
-export const DEMO_USER2_LOGIN = 'user2@crm-simple.ua';
-export const DEMO_USER2_PASSWD = '123456';
+export const DEMO_LOGIN1 = 'user1';
+export const DEMO_PASSWD1 = '123456';
+export const DEMO_PROFILE_ID1 = 1;
+export const DEMO_LOGIN2 = 'user2';
+export const DEMO_PASSWD2 = '123456';
+export const DEMO_PROFILE_ID2 = 2;
+// Window.sessionStorage
+export const USER_AUTHORIZE = 'user-authorize';
 
 // Route:
 export const RB_APP_AUTHORISE = 'app-authorize';

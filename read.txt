@@ -1,4 +1,171 @@
 
+2020.09.23
+
+
+https://github.com/cedx/ngx-cookies/blob/main/src/cookies.ts
+
+https://github.com/rafay826/angular-cookies/blob/master/src/cookie-service/cookie.service.ts
+options: Partial<CookieOptionsParams> = {}
+export type JsonObject = Record<string, Json>;
+
+
+"/api/authorize/signout"
+ /api/authorize
+
+https://github.com/jeroenouw/
+dart-compared-to-typescript
+Examples for Dart code compared to TypeScript code
+
+AngularMaterialFirebase
+fire Full stack starter app with Angular 8, Material Design and Firebase (+ demo)
+ TypeScript  223  110
+
+flutter/flutter
+Flutter makes it easy and fast to build beautiful apps for mobile and beyond.
+ Dart  102k  14.1k
+
+https://github.com/jeroenouw/AngularMaterialFirebase
+Angular 8 | Material Design | Firebase - Starter kit
+
+https://github.com/rafay826/angular-cookies/blob/master/src/cookie-service/cookie.service.ts
+
+https://itnext.io/angular-8-how-to-use-cookies-14ab3f2e93fc
+Angular 9— How to use cookies
+https://github.com/cedx/ngx-cookies/blob/main/src/cookies.ts
+
+hash:""
+host:"localhost:4250"
+hostname:"localhost"
+href:"http://localhost:4250/app-authorize/signin"
+origin:"http://localhost:4250"
+pathname:"/app-authorize/signin"
+port:"4250"
+protocol:"http:"
+reload:function reload() { … }
+replace:function replace() { … }
+search:""
+
+WARNING in
+/home/alexey/ws_ts3/crm-simple3
+/projects/app-authorize/src/app/interceptors/mock-authorize.interceptor.ts
+ depends on 'rxjs/internal/observable/of'.
+
+CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+WARNING in mock-authorize.interceptor.ts depends on 'rxjs/internal/observable/of'.
+
+
+https://angular.io/guide/build#configure-target-specific-file-replacements
+Настроить замену файлов для конкретных целей
+
+
+
+import { Observable } from 'rxjs/internal/Observable';
+//import { take, map } from 'rxjs/operators';
+import { take } from 'rxjs/internal/operators/take';
+import { map } from 'rxjs/internal/operators/map';
+
+// import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs/internal/Subscription';
+
+// import { delay } from 'rxjs/operators';
+import { delay } from 'rxjs/internal/operators/delay';
+
+
+Logged out of the crm system. - Вы вышли из системы crm.
+
+
+https://www.digitalocean.com/community/tutorials/angular-angular-webpack-bundle-analyzer
+Angular: анализ производительности с помощью анализатора пакетов webpack
+
+Новый проект и добавление зависимостей
+$ mkdir bundleAnalyser && cd bundleAnalyser
+
+Установить angular/cli версии 10
+$ npm install @angular/cli@10
+
+Создать новый проект
+$ npx ng new bundleAnalyser --directory=. --style=scss
+
+Добавим две библиотеки
+$ npm i moment
+$ npm i firebase
+
+Наш пакет увеличился с 9 КБ до 24 КБ. Мы должны проанализировать это, чтобы увидеть,
+что мы можем сделать, чтобы снизить этот показатель. Установим webpack-bundle-analyzerплагин:
+$ npm i webpack-bundle-analyzer -D
+
+Сборка с помощью stats.json
+Мы можем добавить новый скрипт, package.jsonчтобы добавить эту функциональность:
+project.json
+"scripts": {
+  "build:stats": "ng build --stats-json"
+}
+Запустим чтобы создать stats.json файл внутри в dist
+$ npm run build:stats
+
+Мы можем сделать другой , scriptкоторый бежит webpack-bundle-analyzerс stats.json:
+
+"scripts": {
+  "analyze": "webpack-bundle-analyzer dist/AngularBundleAnalyser/stats.json"
+}
+Запустите анализатор с помощью следующей команды:
+
+$ npm run analyze
+После этого вы сможете увидеть свой анализ по адресу localhost:8888
+
+Show chunks:
+All (4.95 MB)
+vendor.js (4.73 MB)
+polyfills.js (141.3 KB)
+main.js (62.42 KB)
+styles.js (12.85 KB)
+runtime.js (6.15 KB)
+
+Show chunks:
+All (3.05 MB)
+vendor.js (2.83 MB)
+polyfills.js (141.3 KB)
+main.js (62.48 KB)
+styles.js (12.85 KB)
+runtime.js (6.15 KB)
+
+
+
+
+Show chunks:
+All (4.15 MB)
+vendor.js (2.68 MB)
+default~projects-app-client-src-app-app-module~projects-app-task-src-app-app-module.js (579.8 KB)
+projects-app-authorize-src-app-app-module.js (330.98 KB)
+styles.js (168.1 KB)
+polyfills.js (141.3 KB)
+projects-app-client-src-app-app-module.js (105.34 KB)
+projects-app-task-src-app-app-module.js (92.19 KB)
+main.js (63.66 KB)
+default~projects-app-authorize-src-app-app-module~projects-app-client-src-app-app-module~projects-ap~10f4869e.js (18.59 KB)
+runtime.js (9.59 KB)
+
+
+Show chunks:
+All (4.09 MB)<
+vendor.js (2.64 MB)
+default~projects-app-client-src-app-app-module~projects-app-task-src-app-app-module.js (579.8 KB)
+projects-app-authorize-src-app-app-module.js (330.5 KB)<
+styles.js (168.1 KB)
+polyfills.js (141.3 KB)
+projects-app-client-src-app-app-module.js (104.41 KB)<
+projects-app-task-src-app-app-module.js (91.26 KB)<
+main.js (62.43 KB)<
+runtime.js (9.38 KB)<
+
+
+
+    <div style="border: 1px dashed blueviolet; box-sizing: border-box;">
+      <div style="max-width: 300px;">{{ formGroup.value | json }}</div>
+    </div>
+
 
 
 2020.09.22

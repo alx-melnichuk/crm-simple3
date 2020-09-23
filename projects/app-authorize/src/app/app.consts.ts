@@ -12,7 +12,6 @@ export class Tracing {
  */
 // router - "/authorize/signin"
 export const RB_SIGNIN = 'signin';
-// export const RT_APP_AUTHORISE_SIGNIN = '/' + RB_APP_AUTHORISE + '/' + RB_LOGIN;
-
-export const API_AUTHORISE = 'api/authorize';
-export const API_SIGNIN = 'api/signin';
+// router - "/authorize/signout"
+export const RB_SIGNOUT = 'signout';
+// export const RT_APP_AUTHORIZE_SIGNIN = '/' + RB_APP_AUTHORIZE + '/' + RB_SIGNIN;

@@ -12,3 +12,19 @@ body {
 .hidden {
   display: none;
 }
+  
+a {
+  text-decoration: none;
+  color: #008996;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.pointer {
+  cursor: pointer;
+}

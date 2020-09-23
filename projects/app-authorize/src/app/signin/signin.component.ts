@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
-import { DEMO_USER1_LOGIN, DEMO_USER1_PASSWD, VERSION_APP } from '../../../../lib-core/src/lib/lib-core.const';
+import { DEMO_LOGIN1, DEMO_PASSWD1, VERSION_APP } from '../../../../lib-core/src/lib/lib-core.const';
 import { AutoUnsubscribe } from '../../../../lib-core/src/lib/decorators/auto-unsubscribe';
 import { AuthorizeApiService } from '../services/authorize-api.service';
-import { Subscription } from 'rxjs';
+import { AuthorizeDto } from '../services/authorize.interface';
+import { NavigateUtil } from '../../../../../projects/lib-core/src/lib/utils/navigate.util';
 
 @Component({
   selector: 'app-signin',
@@ -14,8 +16,8 @@ import { Subscription } from 'rxjs';
 @AutoUnsubscribe()
 export class SigninComponent implements OnInit {
 
-  public demoUserLogin: string | null = DEMO_USER1_LOGIN;
-  public demoUserPassword: string | null = DEMO_USER1_PASSWD;
+  public demoUserLogin: string | null = DEMO_LOGIN1;
+  public demoUserPassword: string | null = DEMO_PASSWD1;
   public version: string | null = VERSION_APP;
 
   public formGroup: FormGroup;
@@ -24,7 +26,7 @@ export class SigninComponent implements OnInit {
     login: new FormControl(null, [Validators.required]),
     password: new FormControl(null)
   };
-  private unsubCheckLogin: Subscription;
+  private unsubSignin: Subscription;
 
   constructor(private authorizeApiService: AuthorizeApiService) {
     this.formGroup = new FormGroup(this.controlList);
@@ -36,15 +38,16 @@ export class SigninComponent implements OnInit {
   // ** Public API **
 
   public clickSignIn(): void {
-    console.log('clickSignIn()');
-    if (this.unsubCheckLogin != null) {
-      this.unsubCheckLogin.unsubscribe();
+    if (this.unsubSignin != null) {
+      this.unsubSignin.unsubscribe();
     }
     const login = this.controlList.login.value;
     const password = this.controlList.password.value;
-    this.unsubCheckLogin = this.authorizeApiService.signin({ login, password })
-      .subscribe((response) => {
-        console.log('clickSignIn() checkLogin()=', response);
+    this.unsubSignin = this.authorizeApiService.signin({ login, password })
+      .subscribe((response: AuthorizeDto) => {
+        if (response != null) {
+          NavigateUtil.reloadByPathName('/app-client/list');
+        }
       });
   }
 

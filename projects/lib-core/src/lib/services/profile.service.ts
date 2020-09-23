@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { take, tap } from 'rxjs/operators';
+import { Observable, BehaviorSubject, Subject } from 'rxjs';
+import { map, take } from 'rxjs/operators';
 
 import { Tracing } from '../lib-core.const';
 
@@ -13,9 +13,10 @@ import { ProfileDto } from './profile.interface';
 export class ProfileService {
 
   public get profileDto(): ProfileDto {
-    return (this.innProfileDto == null ? null : (Object.assign({}, this.innProfileDto)) as ProfileDto);
+    return this.cloneProfileDto(this.innProfileDto);
   }
   public set profileDto(value: ProfileDto) {}
+  public profileDto$: Subject<ProfileDto> = new BehaviorSubject<ProfileDto>(null);
 
   private innProfileDto: ProfileDto;
 
@@ -25,25 +26,26 @@ export class ProfileService {
 
   // ** Public API **
 
-  public loadProfile(profileId: number): Observable<ProfileDto[]> {
+  public loadProfile(profileId: number): Observable<ProfileDto> {
     this.innProfileDto = null;
     return this.profileApiService.getData({ ids: [profileId] })
       .pipe(
         take(1),
-        tap((profiles: ProfileDto[]) => {
+        map((profiles: ProfileDto[]) => {
           if (profiles != null && profiles.length > 0) {
-            this.innProfileDto = profiles[0];
+            this.innProfileDto = this.cloneProfileDto(profiles[0]);
+            this.profileDto$.next(this.cloneProfileDto(profiles[0]));
           }
-          return profiles;
+          return this.innProfileDto;
         })
       );
   }
 
-  public userName(): string {
+  public userName(profileDto: ProfileDto): string {
     let result = '';
-    if (this.innProfileDto != null) {
-      const surname = (this.innProfileDto.surname || '');
-      const name = (this.innProfileDto.name || '');
+    if (profileDto != null) {
+      const surname = (profileDto.surname || '');
+      const name = (profileDto.name || '');
       result = surname + ' ' + name;
     }
     return result;
@@ -53,6 +55,14 @@ export class ProfileService {
     return (this.innProfileDto != null ? this.innProfileDto.permissions : null);
   }
 
+  public clearProfile(): void {
+    this.innProfileDto = null;
+    this.profileDto$.next(null);
+  }
+
   // ** Private API **
 
+  private cloneProfileDto(profileDto: ProfileDto): ProfileDto {
+    return (profileDto == null ? null : Object.assign({}, profileDto));
+  }
 }
