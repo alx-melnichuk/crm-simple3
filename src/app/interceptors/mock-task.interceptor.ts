@@ -3,9 +3,9 @@ import { HttpEvent, HttpRequest, HttpHandler, HttpInterceptor, HttpResponse } fr
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
-import { API_TASK, QP_TASK_IDS } from '../../../../app-task/src/app/services/task-api.service';
-import { TaskDto } from '../../../../app-task/src/app/services/task.interface';
 import { Tracing } from '../app.consts';
+import { API_TASK, QP_TASK_IDS } from '../../../projects/app-task/src/app/services/task-api.service';
+import { TaskDto } from '../../../projects/app-task/src/app/services/task.interface';
 
 
 @Injectable()

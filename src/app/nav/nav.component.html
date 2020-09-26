@@ -4,7 +4,6 @@
       <li *ngFor="let nav of navList" [routerLink]="[nav.routerLink]" [routerLinkActive]="['active']">
         {{ nav.name }}
       </li>
-      <li [routerLink]="['/app-authorize/signin']">SignIn</li>
       <li [routerLink]="['/app-authorize/signout']">SignOut</li>
     </ul>
   </nav>

@@ -5,11 +5,13 @@ import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
 import { Tracing } from '../app.consts';
-import { AuthorizeDto } from '../services/authorize.interface';
+import { AuthorizeDto } from '../../../projects/app-authorize/src/app/services/authorize.interface';
 import {
   DEMO_LOGIN1, DEMO_PASSWD1, DEMO_PROFILE_ID1, DEMO_LOGIN2, DEMO_PASSWD2, DEMO_PROFILE_ID2, USER_AUTHORIZE
-} from '../../../../lib-core/src/lib/lib-core.const';
-import { API_AUTHORIZE, API_AUTHORIZE_SIGNIN, API_AUTHORIZE_SIGNOUT } from '../services/authorize-api.service';
+} from '../../../projects/lib-core/src/lib/lib-core.const';
+import {
+  API_AUTHORIZE, API_AUTHORIZE_SIGNIN, API_AUTHORIZE_SIGNOUT
+} from '../../../projects/app-authorize/src/app/services/authorize-api.service';
 
 
 @Injectable({

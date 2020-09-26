@@ -1,5 +1,5 @@
 <div class="t-l-m-wrap mat-elevation-z8">
-  <div class="t-l-m-table"  *ngIf="taskList != null">
+  <div *ngIf="taskList != null">
     <table mat-table [dataSource]="taskList">
 
       <ng-container matColumnDef="id">

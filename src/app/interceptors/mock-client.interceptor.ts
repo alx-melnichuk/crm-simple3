@@ -4,8 +4,8 @@ import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
 import { Tracing } from '../app.consts';
-import { API_CLIENT, QP_CLIENT_IDS } from '../../../../app-client/src/app/services/client-api.service';
-import { ClientDto } from '../../../../app-client/src/app/services/client.interface';
+import { API_CLIENT, QP_CLIENT_IDS } from '../../../projects/app-client/src/app/services/client-api.service';
+import { ClientDto } from '../../../projects/app-client/src/app/services/client.interface';
 
 
 @Injectable({

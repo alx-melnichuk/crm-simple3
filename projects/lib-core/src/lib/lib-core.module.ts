@@ -1,5 +1,4 @@
-import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { NgModule, Optional, SkipSelf } from '@angular/core';
 
 import { LibCoreComponent } from './lib-core.component';
 import { PermissionsGuard } from './guards/permissions.guard';
@@ -10,9 +9,7 @@ import { Tracing } from './lib-core.const';
 
 @NgModule({
   declarations: [LibCoreComponent],
-  imports: [
-    HttpClientModule
-  ],
+  imports: [ ],
   exports: [LibCoreComponent],
   providers: [
     ProfileApiService,
@@ -21,7 +18,10 @@ import { Tracing } from './lib-core.const';
   ]
 })
 export class LibCoreModule {
-  constructor() {
+  constructor(@Optional() @SkipSelf() parentModule?: LibCoreModule) {
     Tracing.log('LibCoreModule();');
+    if (parentModule) {
+      throw new Error('LibCoreModule is already loaded. Import it in the AppModule only.');
+    }
   }
 }

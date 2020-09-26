@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
   private prepareProfileDto(profileDto: ProfileDto): void {
     this.profileDto = profileDto;
     this.hasProfile = (this.profileDto != null);
-    this.navList = this.createNavList(this.profileDto.permissions);
+    this.navList = this.createNavList(this.profileDto != null ? this.profileDto.permissions : []);
     this.userName = this.profileService.userName(this.profileDto);
   }
 
